@@ -5,6 +5,6 @@ const routes = [booksRouter, userRouter];
 
 export const registrateApiV1Routes = (app) => {
   routes.forEach((router) => {
-    app.use("/api/v1", router);
+    app.use("/api", router);
   });
 };
