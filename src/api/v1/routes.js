@@ -1,5 +1,5 @@
-import { booksRouter } from "./books/books.js";
-import { userRouter } from "./user/user.js";
+import { booksRouter } from "./books/index.js";
+import { userRouter } from "./user/index.js";
 
 const routes = [booksRouter, userRouter];
 
