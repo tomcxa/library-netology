@@ -19,7 +19,9 @@ class BooksControler {
     if (book) {
       return res.json(book);
     }
-    return res.status(404).json(`Not found book with id: ${id}`);
+    return res
+      .status(404)
+      .json({ status: 404, message: `Not found book with id: ${id}` });
   };
 
   static createOne = (req, res) => {

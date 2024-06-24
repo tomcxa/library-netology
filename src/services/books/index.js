@@ -26,7 +26,35 @@ const booksFilePathname = path.resolve(
 /**
  * @type {Array<Book<string>>} - все нкниги
  */
-const books = [];
+const books = [
+  {
+    id: "1",
+    title: "string",
+    description: "string",
+    authors: "string",
+    favorite: true,
+    fileCover: "string",
+    fileName: "string",
+  },
+  {
+    id: "2",
+    title: "string",
+    description: "string",
+    authors: "string",
+    favorite: false,
+    fileCover: "string",
+    fileName: "string",
+  },
+  {
+    id: "3",
+    title: "string",
+    description: "string",
+    authors: "string",
+    favorite: true,
+    fileCover: "string",
+    fileName: "string",
+  },
+];
 
 /**
  * Возвращает список всех книги
@@ -45,9 +73,8 @@ export const getBookById = (bookId) => {
   const book = books.find(({ id }) => id === bookId);
   if (book) {
     return book;
-  } else {
-    throw new Error("Book not found");
   }
+  return;
 };
 
 /**

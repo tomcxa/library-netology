@@ -7,9 +7,11 @@
   "description": "",
   "type": "module",
   "scripts": {
-    "dev": "nodemon ./src/index.js"
+    "dev": "nodemon --ext js,ejs ./src/index.js"
   },
   "dependencies": {
+    "axios": "^1.7.2",
+    "ejs": "^3.1.10",
     "express": "^4.19.2",
     "express-fileupload": "^1.5.0",
     "uuid": "^9.0.1"
