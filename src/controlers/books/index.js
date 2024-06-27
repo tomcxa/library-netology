@@ -9,29 +9,36 @@ import {
 import { createBookFile } from "../../services/books/index.js";
 
 class BooksControler {
-  static getAll = (_req, res) => {
-    return res.json(getAllBooks());
+  static getAll = async (_req, res, next) => {
+    try {
+      const books = await getAllBooks();
+      return res.json(books);
+    } catch (error) {
+      next(error);
+    }
   };
 
-  static getOne = (req, res) => {
-    const { id } = req.params;
-    const book = getBookById(id);
-    if (book) {
-      return res.json(book);
+  static getOne = async (req, res, next) => {
+    try {
+      const { id } = req.params;
+      const book = await getBookById(id);
+
+      if (book) {
+        return res.json(book);
+      }
+    } catch (error) {
+      next(error);
     }
-    return res
-      .status(404)
-      .json({ status: 404, message: `Not found book with id: ${id}` });
   };
 
-  static createOne = (req, res) => {
-    const payload = req.body;
-
-    if (payload) {
-      return res.status(201).json(addBook(payload));
+  static createOne = async (req, res, next) => {
+    try {
+      const payload = req.body;
+      const book = await addBook(payload);
+      return res.status(201).json(book);
+    } catch (error) {
+      next(error);
     }
-
-    return res.status(400).json("Bad request");
   };
 
   static updateOne = (req, res) => {

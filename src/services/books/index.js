@@ -1,6 +1,8 @@
 import path from "node:path";
 import { unlink } from "node:fs/promises";
-import { v4 } from "uuid";
+import { Book } from "../../models/book/index.js";
+import { ApiError } from "../../utils/api-error/index.js";
+import { formatedBook } from "./formatedBook.js";
 
 const booksFilePathname = path.resolve(
   import.meta.dirname,
@@ -24,44 +26,12 @@ const booksFilePathname = path.resolve(
  */
 
 /**
- * @type {Array<Book<string>>} - все нкниги
- */
-const books = [
-  {
-    id: "1",
-    title: "string",
-    description: "string",
-    authors: "string",
-    favorite: true,
-    fileCover: "string",
-    fileName: "string",
-  },
-  {
-    id: "2",
-    title: "string",
-    description: "string",
-    authors: "string",
-    favorite: false,
-    fileCover: "string",
-    fileName: "string",
-  },
-  {
-    id: "3",
-    title: "string",
-    description: "string",
-    authors: "string",
-    favorite: true,
-    fileCover: "string",
-    fileName: "string",
-  },
-];
-
-/**
  * Возвращает список всех книги
- * @returns {Array<Book<string>>}
  */
-export const getAllBooks = () => {
-  return books;
+export const getAllBooks = async () => {
+  const books = await Book.find();
+  console.log(books);
+  return books?.map((book) => formatedBook(book));
 };
 
 /**
@@ -69,12 +39,13 @@ export const getAllBooks = () => {
  * @param {Book<string>['id']} bookId
  *
  */
-export const getBookById = (bookId) => {
-  const book = books.find(({ id }) => id === bookId);
+export const getBookById = async (bookId) => {
+  const book = await Book.findById(bookId);
   if (book) {
-    return book;
+    console.log(book);
+    return formatedBook(book);
   }
-  return;
+  throw ApiError.notFound();
 };
 
 /**
@@ -82,13 +53,13 @@ export const getBookById = (bookId) => {
  * @param {Book<undefined>} book
  *
  */
-export const addBook = (book) => {
+export const addBook = async (book) => {
   if (book) {
-    const id = v4();
-    const newBook = { id, ...book };
-    books.push(newBook);
-    return newBook;
+    const createdBook = await Book.create(book);
+    return formatedBook(createdBook);
   }
+
+  throw ApiError.badRequest();
 };
 
 /**
@@ -97,14 +68,18 @@ export const addBook = (book) => {
  * @param {Book<undefined>} payload
  *
  */
-export const updateBook = (bookId, payload) => {
-  const updatingBooksIndex = books.findIndex(({ id }) => id === bookId);
-  if (updatingBooksIndex !== -1) {
-    books[updatingBooksIndex] = { ...books[updatingBooksIndex], ...payload };
-    return books[updatingBooksIndex];
-  } else {
-    throw new Error("Book not found");
+export const updateBook = async (bookId, payload) => {
+  if (payload) {
+    const updatedBook = await Book.findByIdAndUpdate(bookId, payload);
+
+    if (updatedBook) {
+      return formatedBook(updatedBook);
+    }
+
+    throw ApiError.notFound();
   }
+
+  throw ApiError.badRequest();
 };
 
 /**
@@ -112,13 +87,9 @@ export const updateBook = (bookId, payload) => {
  * @param {Book<string>['id']} bookId
  *
  */
-export const deleteBook = (bookId) => {
-  const deletingBookIndex = books.findIndex(({ id }) => bookId === id);
-  if (deletingBookIndex !== -1) {
-    removeBookFile(bookId);
-    books.splice(deletingBookIndex, 1);
-    return books;
-  }
+export const deleteBook = async (bookId) => {
+  const deletedBook = await Book.findByIdAndDelete(bookId);
+  return formatedBook(deletedBook);
 };
 
 export const getBookFilePath = (fileName) => {

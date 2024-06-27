@@ -60,6 +60,7 @@ booksRouter.post("/books/update/:id", async (req, res) => {
 booksRouter.get("/books/:id", async (req, res) => {
   try {
     const book = await requestClient.get(req.url);
+    console.log(book.data);
     return res.render("pages/books/detail", { book: book.data });
   } catch (error) {
     if (error?.response?.data?.status === 404) {

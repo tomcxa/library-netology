@@ -1,6 +1,7 @@
 import "dotenv/config";
 import path from "node:path";
 import express from "express";
+import { connect } from "mongoose";
 import { registrateApiV1Routes } from "./api/v1/routes.js";
 import { registrateViewRoutes } from "./views/routes/index.js";
 
@@ -16,6 +17,15 @@ app.set("view engine", "ejs");
 registrateApiV1Routes(app);
 registrateViewRoutes(app);
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+async function start() {
+  try {
+    await connect(process.env.URL_DB);
+    app.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+start();
