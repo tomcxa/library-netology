@@ -1,7 +1,7 @@
 import path from "node:path";
-import { ApiError } from "../../utils/api-error/index.ts";
-import { formatedBook } from "./formatedBook.ts";
-import { type Book, BookModel } from "../../models/book/index.ts";
+import { ApiError } from "../../utils/api-error/index.js";
+import { formatedBook } from "./formatedBook.js";
+import { type Book, BookModel } from "../../models/book/index.js";
 
 const booksFilePathname = path.resolve(
   import.meta.dirname,

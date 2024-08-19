@@ -2,11 +2,11 @@ import "dotenv/config";
 import path from "node:path";
 import express from "express";
 import { connect } from "mongoose";
-import { registrateApiV1Routes } from "./api/v1/routes.ts";
-import { registrateViewRoutes } from "./views/routes/index.ts";
+import { registrateApiV1Routes } from "./api/v1/routes.js";
+import { registrateViewRoutes } from "./views/routes/index.js";
 
 const PORT = process.env.PORT || 6666;
-const URL_DB = process.env.URL_DB || ''
+const URL_DB = process.env.URL_DB || "";
 
 const app = express();
 

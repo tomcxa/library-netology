@@ -1,7 +1,7 @@
-import type { Express } from 'express'
-import { booksRouter } from "./books/index.ts";
-import { errorsRouter } from "./errors/index.ts";
-import { homeRouter } from "./home/index.ts";
+import type { Express } from "express";
+import { booksRouter } from "./books/index.js";
+import { errorsRouter } from "./errors/index.js";
+import { homeRouter } from "./home/index.js";
 
 const routes = [homeRouter, booksRouter, errorsRouter];
 

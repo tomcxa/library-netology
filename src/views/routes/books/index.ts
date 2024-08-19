@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { Router } from "express";
-import { requestClient } from "../../utils/requestClient.ts";
+import { requestClient } from "../../utils/requestClient.js";
 
 export const booksRouter = Router();
 

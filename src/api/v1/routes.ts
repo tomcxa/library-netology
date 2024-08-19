@@ -1,7 +1,7 @@
-import type {Express} from 'express'
-import { errorMiddleware } from "../../middlewares/errorMiddleware.ts";
-import { booksRouter } from "./books/index.ts";
-import { userRouter } from "./user/index.ts";
+import type { Express } from "express";
+import { errorMiddleware } from "../../middlewares/errorMiddleware.js";
+import { booksRouter } from "./books/index.js";
+import { userRouter } from "./user/index.js";
 
 const routes = [booksRouter, userRouter];
 

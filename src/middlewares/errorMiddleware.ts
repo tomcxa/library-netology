@@ -1,5 +1,5 @@
-import type { ErrorRequestHandler, Response } from "express";
-import { ApiError } from "../utils/api-error/index.ts";
+import type { ErrorRequestHandler } from "express";
+import { ApiError } from "../utils/api-error/index.js";
 
 export const errorMiddleware: ErrorRequestHandler = (err, _req, res) => {
   console.log(err);

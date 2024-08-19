@@ -1,14 +1,17 @@
 {
   "name": "library-netology",
   "version": "1.0.0",
-  "main": "./src/index.js",
   "author": "",
   "license": "ISC",
   "description": "",
+  "main": "./dist/index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon --ext js,ejs ./src/index.js",
+    "watch": "nodemon --ext js,ejs ./dist/index.js",
+    "dev:2": "nodemon -I --exec node ts-node ./src/index.ts",
+    "build": "tsc",
     "build:dev": "tsc --watch",
+    "dev": "npm run watch && npm run build:dev",
     "lint": "eslint --ignore-path .eslintignore --ext .js,.ts"
   },
   "dependencies": {
@@ -31,6 +34,8 @@
     "globals": "^15.9.0",
     "nodemon": "^3.1.3",
     "prettier": "^3.3.3",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
     "typescript": "^5.5.4",
     "typescript-eslint": "^8.1.0"
   }

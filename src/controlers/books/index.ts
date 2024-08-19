@@ -5,7 +5,7 @@ import {
   getAllBooks,
   getBookById,
   updateBook,
-} from "../../services/books/index.ts";
+} from "../../services/books/index.js";
 
 class BooksControler {
   static getAll: RequestHandler = async (_req, res, next) => {

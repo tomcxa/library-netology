@@ -1,6 +1,6 @@
 import { Router } from "express";
 import fileUpload from "express-fileupload";
-import BooksControler from "../../../controlers/books/index.ts";
+import BooksControler from "../../../controlers/books/index.js";
 
 export const booksRouter = Router();
 
