@@ -1,6 +1,6 @@
 import { Router } from "express";
 import fileUpload from "express-fileupload";
-import BooksControler from "../../../controlers/books/index.js";
+import BooksControler from "../../../controlers/books/index.ts";
 
 export const booksRouter = Router();
 
@@ -20,6 +20,6 @@ booksRouter.patch("/books/:id", BooksControler.updateOne);
 
 booksRouter.delete("/books/:id", BooksControler.deleteOne);
 
-booksRouter.post("/books/:id", BooksControler.uploadFile);
+// booksRouter.post("/books/:id", BooksControler.uploadFile);
 
-booksRouter.get("/books/:id/download", BooksControler.downloadFile);
+// booksRouter.get("/books/:id/download", BooksControler.downloadFile);
