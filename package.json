@@ -8,7 +8,6 @@
   "type": "module",
   "scripts": {
     "watch": "nodemon --ext js,ejs ./dist/index.js",
-    "dev:2": "nodemon -I --exec node ts-node ./src/index.ts",
     "build": "tsc",
     "build:dev": "tsc --watch",
     "dev": "npm run watch && npm run build:dev",
@@ -19,7 +18,9 @@
     "ejs": "^3.1.10",
     "express": "^4.19.2",
     "express-fileupload": "^1.5.0",
+    "inversify": "^6.0.2",
     "mongoose": "^8.4.4",
+    "reflect-metadata": "^0.2.2",
     "uuid": "^9.0.1"
   },
   "devDependencies": {

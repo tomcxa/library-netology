@@ -22,4 +22,6 @@ const bookSchema = new Schema<Book>(bookSchemaDefenition, { id: false });
 
 export const BookModel = model("Book", bookSchema);
 
+export type BookDbModel = typeof BookModel;
+
 export type BookMongooseDoc = Document<unknown, {}, Book>;

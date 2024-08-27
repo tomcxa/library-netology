@@ -1,6 +1,7 @@
 import { Router } from "express";
 import fileUpload from "express-fileupload";
 import BooksControler from "../../../controlers/books/index.js";
+import { container } from "../../../ioc/container.js";
 
 export const booksRouter = Router();
 
@@ -10,16 +11,12 @@ booksRouter.use(
   })
 );
 
-booksRouter.get("/books", BooksControler.getAll);
+booksRouter.get("/books", container.get(BooksControler).getAll);
 
-booksRouter.get("/books/:id", BooksControler.getOne);
+booksRouter.get("/books/:id", container.get(BooksControler).getOne);
 
-booksRouter.post("/books", BooksControler.createOne);
+booksRouter.post("/books", container.get(BooksControler).createOne);
 
-booksRouter.patch("/books/:id", BooksControler.updateOne);
+booksRouter.patch("/books/:id", container.get(BooksControler).updateOne);
 
-booksRouter.delete("/books/:id", BooksControler.deleteOne);
-
-// booksRouter.post("/books/:id", BooksControler.uploadFile);
-
-// booksRouter.get("/books/:id/download", BooksControler.downloadFile);
+booksRouter.delete("/books/:id", container.get(BooksControler).deleteOne);
